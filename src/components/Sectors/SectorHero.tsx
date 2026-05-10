@@ -10,6 +10,7 @@ interface SectorHeroProps {
   isMalayalam: boolean;
 }
 
+
 export default function SectorHero({ title, description, isMalayalam }: SectorHeroProps) {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden bg-[#0A3D2E] text-white">
