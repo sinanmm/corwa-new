@@ -1,32 +1,40 @@
-'use client';
-
-import { useParams, notFound } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import SectorPageTemplate from '@/components/Sectors/SectorPageTemplate';
+import type { Metadata } from 'next';
 import { sectors } from '@/data/sectors';
-import { useAppStore } from '@/store/useStore';
+import SectorClient from './SectorClient';
 
-export default function SectorPage() {
-  const { slug } = useParams();
-  const { language } = useAppStore();
-  const isMalayalam = language === 'malayalam';
+type Props = { params: Promise<{ slug: string }> };
 
-  // useParams returns a string or string array, handle safely
-  const sectorSlug = Array.isArray(slug) ? slug[0] : slug;
-  const sector = sectors.find(s => s.slug === sectorSlug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const sector = sectors.find(s => s.slug === slug);
 
   if (!sector) {
-    notFound();
+    return { title: 'Sector Not Found' };
   }
 
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow">
-        <SectorPageTemplate sector={sector} isMalayalam={isMalayalam} />
-      </main>
-      <Footer />
-    </div>
-  );
+  const orgNames = sector.organizations
+    .slice(0, 3)
+    .map(o => o.name)
+    .join(', ');
+
+  return {
+    title: `${sector.title} – CoRWA Partner Sector`,
+    description: `${sector.description} Partner organizations include ${orgNames} and more. Exclusive discounts for CoRWA members.`,
+    alternates: {
+      canonical: `https://corwa.in/sectors/${slug}`,
+    },
+    openGraph: {
+      title: `${sector.title} | CoRWA`,
+      description: sector.description,
+      url: `https://corwa.in/sectors/${slug}`,
+    },
+  };
+}
+
+export function generateStaticParams() {
+  return sectors.map(s => ({ slug: s.slug }));
+}
+
+export default function SectorPage() {
+  return <SectorClient />;
 }
