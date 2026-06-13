@@ -47,7 +47,7 @@ export default function AssociationsClient() {
     <div className="flex flex-col min-h-screen bg-gray-50/30">
       <Header />
 
-      {/* Search Header */}
+      {/* Header */}
       <div className="bg-[#0A3D2E] pt-12 pb-24 px-6 rounded-b-[3rem] shadow-md">
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6">
@@ -58,19 +58,6 @@ export default function AssociationsClient() {
               ? 'തിരയുക, നിങ്ങളുടെ താലൂക്കിലെ അസോസിയേഷനുകൾ കണ്ടെത്തുക'
               : 'Search and connect with Resident Welfare Associations across various Taluks in Malappuram district.'}
           </p>
-
-          <div className="relative max-w-2xl mx-auto shadow-2xl rounded-2xl">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <Search className="h-6 w-6 text-gray-400" />
-            </div>
-            <input
-              type="text"
-              placeholder={isMalayalam ? 'അസോസിയേഷൻ തിരയുക...' : 'Search association by name...'}
-              value={searchTerm}
-              onChange={handleSearch}
-              className="block w-full pl-12 pr-4 py-5 bg-white border-0 text-gray-900 rounded-2xl shadow-sm focus:ring-4 focus:ring-[#DCAE1D]/50 focus:outline-none transition-shadow text-lg"
-            />
-          </div>
         </div>
       </div>
 
@@ -108,6 +95,26 @@ export default function AssociationsClient() {
                     {t}
                   </button>
                 ))}
+              </div>
+
+              {/* Search Option Under Taluks */}
+              <div className="mt-8 pt-6 border-t border-gray-100">
+                <h3 className="text-sm font-bold text-gray-800 mb-4 flex items-center gap-2 uppercase tracking-wider">
+                  <Search className="w-4 h-4 text-[#DCAE1D]" />
+                  {isMalayalam ? 'തിരയുക' : 'Search'}
+                </h3>
+                <div className="relative w-full rounded-xl">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Search className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder={isMalayalam ? 'അസോസിയേഷൻ തിരയുക...' : 'Search association...'}
+                    value={searchTerm}
+                    onChange={handleSearch}
+                    className="block w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-xl shadow-inner focus:ring-2 focus:ring-[#0A3D2E]/50 focus:border-[#0A3D2E] transition-all text-sm outline-none"
+                  />
+                </div>
               </div>
             </div>
           </div>

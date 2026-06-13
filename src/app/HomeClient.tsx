@@ -33,7 +33,69 @@ export default function HomeClient() {
     <div className="flex flex-col min-h-screen font-sans bg-gray-50/50">
       <Header />
 
-      {/* HERO SECTION */}
+      {/* NATIONAL CORWA HERO SECTION */}
+      <section className="relative overflow-hidden min-h-screen flex flex-col justify-center text-white pt-32 pb-24 border-b border-white/10">
+        <div className="absolute inset-0 z-0">
+          <motion.div
+            initial={{ scale: 1.05 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 15, ease: "easeOut" }}
+            className="w-full h-full"
+          >
+            <img src="/national-hero-bg.png" alt="National CoRWA Background" className="w-full h-full object-cover object-center" />
+          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D2E]/80 via-[#0A3D2E]/60 to-[#041f17]/90 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-black/30" />
+          {/* Lighting Flare */}
+          <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#DCAE1D]/20 rounded-full blur-[150px] mix-blend-screen pointer-events-none"></div>
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full max-w-4xl"
+          >
+            <div className="backdrop-blur-xl bg-[#0A3D2E]/40 border border-white/10 p-8 md:p-14 rounded-[2.5rem] shadow-2xl relative overflow-hidden text-center">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#DCAE1D] to-transparent opacity-60"></div>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 shadow-sm"
+              >
+                <span className="w-2.5 h-2.5 rounded-full bg-[#DCAE1D] animate-pulse shadow-[0_0_8px_#DCAE1D]"></span>
+                <span className="text-[11px] font-bold tracking-[0.2em] text-[#DCAE1D] uppercase">National Committee</span>
+              </motion.div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-8 leading-[1.1] text-white">
+                {isMalayalam ? 'റെസിഡന്റ്സ് വെൽഫെയർ അസോസിയേഷനുകളുടെ കോൺഫെഡറേഷൻ' : 'Confederation of Resident Welfare Associations'}
+              </h1>
+
+              <p className="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed font-light mx-auto max-w-3xl">
+                {isMalayalam
+                  ? 'ഇന്ത്യയിലുടനീളമുള്ള റെസിഡന്റ്സ് വെൽഫെയർ അസോസിയേഷനുകളെ പ്രതിനിധീകരിക്കുന്ന ദേശീയ ഉന്നത സമിതിയാണ് CoRWA. ഞങ്ങളുടെ ദർശനം സമൂഹങ്ങളുടെ ക്ഷേമവും ഐക്യവുമാണ്.'
+                  : 'CoRWA is the national apex body representing Resident Welfare Associations across India. We focus on building stronger communities, driving societal welfare, and unifying residents nationwide.'}
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <Link href="https://www.corwa.in/" target="_blank" rel="noopener noreferrer" className="group px-8 py-4 bg-gradient-to-r from-[#DCAE1D] to-yellow-500 text-[#0A3D2E] font-extrabold rounded-full shadow-[0_0_20px_rgba(220,174,29,0.3)] hover:shadow-[0_0_30px_rgba(220,174,29,0.6)] hover:scale-105 hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2">
+                  {isMalayalam ? 'ദേശീയ വെബ്സൈറ്റ് സന്ദർശിക്കുക' : 'Visit National Website'}
+                  <ExternalLink className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link href="https://drive.google.com/file/d/1StUbnJwsArQcJPeM6r0bDLS2-P8y2s85/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-white/5 text-white font-semibold rounded-full border border-white/20 hover:bg-white/10 hover:border-white/40 transition-all duration-300 backdrop-blur-md w-full sm:w-auto flex items-center justify-center gap-2 shadow-xl hover:-translate-y-1">
+                  {isMalayalam ? 'രേഖകൾ കാണുക' : 'View Documents (PDF)'}
+                  <ArrowUpRight className="w-5 h-5" />
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* KERALA STATE COMMITTEE HERO SECTION */}
       <section className="relative overflow-hidden min-h-screen flex flex-col justify-center text-white pt-32 pb-24 shadow-[inset_0_-20px_40px_rgba(0,0,0,0.1)] border-b border-white/10">
         {/* Pro-Level Aerial Background */}
         <div className="absolute inset-0 z-0">
@@ -82,13 +144,13 @@ export default function HomeClient() {
               </motion.div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-8 leading-[1.1] text-white">
-                {isMalayalam ? 'റെസിഡന്റ്സ് അസോസിയേഷനുകളുടെ ക്ഷേമത്തിനായി' : 'Empowering Welfare and Unity for Associations'}
+                {isMalayalam ? 'റെസിഡന്റ്സ് അസോസിയേഷനുകളുടെ ക്ഷേമത്തിനായി' : 'Empowering Welfare and Unity for Residents Welfare Associations'}
               </h1>
 
               <p className="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed font-light mx-auto max-w-3xl">
                 {isMalayalam
                   ? 'CoRWA (Confederation of Resident Welfare Associations) – നിങ്ങളുടെ അസോസിയേഷൻ മെച്ചപ്പെടുത്തുന്നതിനായി നിരവധി ആരോഗ്യ, യാത്രാ, വാണിജ്യ ആനുകൂല്യങ്ങൾ ഞങ്ങൾ നൽകുന്നു.'
-                  : 'CoRWA connects Resident Welfare Associations providing premium healthcare, tourism, and business benefits. Join us to strengthen your community network.'}
+                  : 'CoRWA connects RWA providing premium healthcare, tourism, and business benefits. Join us to strengthen your community network.'}
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
                 <Link href="/associations" className="group px-8 py-4 bg-gradient-to-r from-[#DCAE1D] to-yellow-500 text-[#0A3D2E] font-extrabold rounded-full shadow-[0_0_20px_rgba(220,174,29,0.3)] hover:shadow-[0_0_30px_rgba(220,174,29,0.6)] hover:scale-105 hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2">
@@ -102,8 +164,7 @@ export default function HomeClient() {
 
               {/* Trust Indicators */}
               <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap justify-center gap-6 md:gap-10 text-sm text-gray-300 font-medium">
-                <div className="flex items-center gap-2"><span className="text-[#DCAE1D] font-bold text-2xl">100+</span> <span>Associations</span></div>
-                <div className="flex items-center gap-2"><span className="text-[#DCAE1D] font-bold text-2xl">5+</span> <span>Sectors</span></div>
+                <div className="flex items-center gap-2"><span className="text-[#DCAE1D] font-bold text-2xl">8000+</span> <span>Associations</span></div>
                 <div className="flex items-center gap-2"><span className="text-[#DCAE1D] font-bold text-2xl">14</span> <span>Districts</span></div>
               </div>
             </div>

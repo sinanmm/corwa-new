@@ -25,25 +25,47 @@ export default function AboutMediaSection() {
       <div className="container mx-auto px-6 max-w-7xl">
         
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            className="w-24 h-24 md:w-32 md:h-32 mb-8 rounded-full bg-white shadow-2xl flex items-center justify-center p-3 border-4 border-emerald-50 relative group"
+          >
+            <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#DCAE1D] opacity-0 group-hover:opacity-100 group-hover:animate-[spin_4s_linear_infinite] transition-opacity duration-300"></div>
+            <img src="/logo.png" alt="CoRWA Logo" className="w-full h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-300" />
+          </motion.div>
+
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold text-[#0A3D2E] mb-6"
           >
-            {isMalayalam ? 'ഞങ്ങളെക്കുറിച്ച്' : 'About CoRWA'}
+            {isMalayalam ? 'കോർവ മലപ്പുറം' : 'CoRWA Malappuram'}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed"
+            className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed mb-4"
           >
             {isMalayalam 
               ? 'CoRWA (Confederation of Resident Welfare Associations) സമൂഹത്തിലെ വിവിധ അസോസിയേഷനുകളെ ഒരുമിപ്പിച്ചു ക്ഷേമപ്രവർത്തനങ്ങൾ ലക്ഷ്യമിടുന്ന ഒരു കൂട്ടായ്മയാണ്.' 
               : 'CoRWA is an apex body of Resident Welfare Associations, focused on building stronger communities, driving societal welfare, and unifying residents across the state.'}
+          </motion.p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed font-medium bg-emerald-50/50 p-6 rounded-2xl border border-emerald-100/50"
+          >
+            {isMalayalam 
+              ? 'മലപ്പുറം ജില്ലയിലെ അസോസിയേഷനുകളുടെ ശാക്തീകരണത്തിനും വികസനത്തിനും വേണ്ടി പ്രവർത്തിക്കുന്ന ജില്ലാ കമ്മിറ്റിയാണ് കോർവ മലപ്പുറം.' 
+              : 'CoRWA Malappuram is a dedicated district-level committee functioning under the Confederation of Resident Welfare Associations. We focus on empowering, developing, and supporting associations specifically within the Malappuram district.'}
           </motion.p>
         </div>
 
