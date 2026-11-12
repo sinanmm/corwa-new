@@ -6,6 +6,7 @@ import { associationsData } from '../data/associations';
 interface FetchAssociationsParams {
   page?: number;
   limit?: number;
+  state?: string;
   taluk?: string;
   district?: string;
   search?: string;
@@ -14,6 +15,7 @@ interface FetchAssociationsParams {
 type LocalAssociationSeed = {
   name: string;
   nameEn?: string;
+  state?: string;
   taluk: string;
   district: string;
 };
@@ -31,14 +33,15 @@ const buildFallbackResponse = (params: FetchAssociationsParams): PaginatedRespon
   const search = params.search?.trim().toLowerCase();
 
   const filteredAssociations = (associationsData as LocalAssociationSeed[])
-    .filter((association) => !params.taluk || association.taluk === params.taluk)
+    .filter((association) => !params.state || (association.state || 'Kerala') === params.state)
     .filter((association) => !params.district || association.district === params.district)
+    .filter((association) => !params.taluk || association.taluk === params.taluk)
     .filter((association) => {
       if (!search) {
         return true;
       }
 
-      return [association.name, association.nameEn, association.taluk, association.district]
+      return [association.name, association.nameEn, association.taluk, association.district, association.state || 'Kerala']
         .filter(Boolean)
         .some((value) => value!.toLowerCase().includes(search));
     });
@@ -49,6 +52,7 @@ const buildFallbackResponse = (params: FetchAssociationsParams): PaginatedRespon
       _id: `${page}-${index}-${association.name}`,
       name: association.name,
       nameEn: association.nameEn,
+      state: association.state || 'Kerala',
       taluk: association.taluk,
       district: association.district,
       category: 'Resident Welfare Association',

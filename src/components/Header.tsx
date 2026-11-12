@@ -1,16 +1,18 @@
 'use client';
+
 import Link from 'next/link';
-import { Menu, X, Globe, Moon, Sun } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { useAppStore } from '../store/useStore';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const { language, theme, toggleLanguage, toggleTheme } = useAppStore();
+  const { language, toggleLanguage } = useAppStore();
 
   const navLinks = [
     { name: language === 'english' ? 'Home' : 'ഹോം', path: '/' },
     { name: language === 'english' ? 'About' : 'കുറിച്ച്', path: '/#about' },
+    { name: language === 'english' ? 'Events' : 'ഇവന്റുകൾ', path: '/#events' },
     { name: language === 'english' ? 'Associations' : 'അസോസിയേഷനുകൾ', path: '/associations' },
     { name: language === 'english' ? 'Services' : 'സേവനങ്ങൾ', path: '/#services' },
     { name: language === 'english' ? 'Contact' : 'ബന്ധപ്പെടുക', path: '/#contact' },
@@ -19,7 +21,6 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-[#0A3D2E]/80 backdrop-blur-2xl shadow-sm border-b border-white/10 text-white transition-all duration-300">
       <div className="container mx-auto px-6 py-5 flex justify-between items-center relative">
-        {/* Logo Section */}
         <Link href="/" className="flex items-center space-x-3">
           <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-white rounded-full shadow-md overflow-hidden">
             <img src="/logo.png" alt="CoRWA Logo" className="w-full h-full object-contain" />
@@ -32,7 +33,6 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-2">
           {navLinks.map((link) => (
             <Link
@@ -45,7 +45,6 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Utilities */}
         <div className="hidden md:flex items-center space-x-4">
           <button
             onClick={toggleLanguage}
@@ -56,7 +55,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <button
           className="md:hidden p-2 text-white hover:text-yellow-400 transition"
           onClick={() => setIsOpen(!isOpen)}
@@ -65,7 +63,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu Content */}
       <div
         className={`md:hidden absolute top-full left-0 w-full bg-[#082b20] transition-all duration-300 ease-in-out overflow-hidden shadow-xl ${
           isOpen ? 'max-h-96 border-t border-white/10' : 'max-h-0'
@@ -83,7 +80,7 @@ export default function Header() {
             </Link>
           ))}
           <div className="pt-2">
-             <button
+            <button
               onClick={() => {
                 toggleLanguage();
                 setIsOpen(false);

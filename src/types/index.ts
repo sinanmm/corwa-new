@@ -2,6 +2,7 @@ export interface Association {
   _id: string;
   name: string;
   nameEn?: string;
+  state?: string;
   taluk: string;
   district: string;
   category: string;

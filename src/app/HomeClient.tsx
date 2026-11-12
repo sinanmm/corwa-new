@@ -6,16 +6,17 @@ import ContactForm from '@/components/ContactForm';
 import AboutMediaSection from '@/components/AboutMediaSection';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useAppStore } from '@/store/useStore';
-import { ChevronRight, ShieldCheck, HeartPulse, Building2, Users, Leaf, Palmtree, Briefcase, TreePine, GraduationCap, Car, ArrowUpRight, ExternalLink } from 'lucide-react';
+import { ChevronRight, ShieldCheck, HeartPulse, Building2, Users, Leaf, Palmtree, Briefcase, TreePine, GraduationCap, Car, ArrowUpRight, ExternalLink, CalendarDays, MapPin, Sparkles } from 'lucide-react';
 import { sectors } from '@/data/sectors';
 
 export default function HomeClient() {
   const { language } = useAppStore();
 
   const isMalayalam = language === 'malayalam';
+  const eventImages = ['/1.jpeg', '/2.jpeg', '/3.jpeg', '/4.jpeg', '/5.jpeg', '/6.jpeg'];
 
-  // Map icon names to Lucide components
   const iconMap: Record<string, React.ReactNode> = {
     HeartPulse: <HeartPulse className="w-8 h-8 text-[#DCAE1D]" />,
     Leaf: <Leaf className="w-8 h-8 text-emerald-500" />,
@@ -39,14 +40,13 @@ export default function HomeClient() {
           <motion.div
             initial={{ scale: 1.05 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 15, ease: "easeOut" }}
+            transition={{ duration: 15, ease: 'easeOut' }}
             className="w-full h-full"
           >
             <img src="/national-hero-bg.png" alt="National CoRWA Background" className="w-full h-full object-cover object-center" />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D2E]/80 via-[#0A3D2E]/60 to-[#041f17]/90 mix-blend-multiply" />
           <div className="absolute inset-0 bg-black/30" />
-          {/* Lighting Flare */}
           <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#DCAE1D]/20 rounded-full blur-[150px] mix-blend-screen pointer-events-none"></div>
         </div>
 
@@ -54,12 +54,12 @@ export default function HomeClient() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             className="w-full max-w-4xl"
           >
             <div className="backdrop-blur-xl bg-[#0A3D2E]/40 border border-white/10 p-8 md:p-14 rounded-[2.5rem] shadow-2xl relative overflow-hidden text-center">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#DCAE1D] to-transparent opacity-60"></div>
-              
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -97,25 +97,19 @@ export default function HomeClient() {
 
       {/* KERALA STATE COMMITTEE HERO SECTION */}
       <section className="relative overflow-hidden min-h-screen flex flex-col justify-center text-white pt-32 pb-24 shadow-[inset_0_-20px_40px_rgba(0,0,0,0.1)] border-b border-white/10">
-        {/* Pro-Level Aerial Background */}
         <div className="absolute inset-0 z-0">
           <motion.div
             initial={{ scale: 1.05 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 15, ease: "easeOut" }}
+            transition={{ duration: 15, ease: 'easeOut' }}
             className="w-full h-full"
           >
             <img src="/hero-bg.jpg" alt="Malappuram Downhill Aerial View" className="w-full h-full object-cover object-[center_30%]" />
           </motion.div>
 
-          {/* Deepened Elegant Gradient Overlays for High-End Cinematic Look */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0A3D2E]/90 via-[#0A3D2E]/70 to-[#041f17]/95 mix-blend-multiply" />
           <div className="absolute inset-0 bg-black/40" />
-
-          {/* Subtle noise grain pattern to add technical/modern touch - using CSS only */}
-          <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay" style={{backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")"}}></div>
-
-          {/* Lighting Flare */}
+          <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")' }}></div>
           <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#DCAE1D]/10 rounded-full blur-[150px] mix-blend-screen pointer-events-none"></div>
         </div>
 
@@ -123,16 +117,12 @@ export default function HomeClient() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             className="w-full max-w-4xl"
           >
-            {/* Premium Glassmorphism Container */}
             <div className="backdrop-blur-xl bg-[#0A3D2E]/30 border border-white/10 p-8 md:p-14 rounded-[2.5rem] shadow-2xl relative overflow-hidden text-center">
-
-              {/* Decorative Top Accent Line */}
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#DCAE1D] to-transparent opacity-60"></div>
 
-              {/* Organization Trust Badge */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -162,7 +152,6 @@ export default function HomeClient() {
                 </Link>
               </div>
 
-              {/* Trust Indicators */}
               <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap justify-center gap-6 md:gap-10 text-sm text-gray-300 font-medium">
                 <div className="flex items-center gap-2"><span className="text-[#DCAE1D] font-bold text-2xl">8000+</span> <span>Associations</span></div>
                 <div className="flex items-center gap-2"><span className="text-[#DCAE1D] font-bold text-2xl">14</span> <span>Districts</span></div>
@@ -174,6 +163,99 @@ export default function HomeClient() {
 
       {/* ABOUT & MEDIA SECTION */}
       <AboutMediaSection />
+
+      {/* EVENTS SECTION */}
+      <section id="events" className="py-24 bg-[radial-gradient(circle_at_top,#ecfdf5,white_45%,#f8fafc_100%)]">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-[#0A3D2E] mb-5">
+              <Sparkles className="w-4 h-4 text-[#DCAE1D]" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em]">Events</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#0A3D2E] mb-5">
+              {isMalayalam ? 'CoRWA Events and the Next Gathering' : 'CoRWA Events and the Next Gathering'}
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              {isMalayalam
+                ? 'Explore moments from our recent programs and get the key details for the upcoming National Conference in Ernakulam, Kerala.'
+                : 'Explore moments from our recent programs and get the key details for the upcoming National Conference in Ernakulam, Kerala.'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 items-start">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {eventImages.map((src, index) => (
+                <motion.div
+                  key={src}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.06 }}
+                  className={`group relative overflow-hidden rounded-[1.75rem] shadow-lg shadow-emerald-950/10 border border-white/70 bg-white ${index === 0 || index === 3 ? 'md:col-span-2' : ''}`}
+                >
+                  <div className={`relative w-full ${index === 0 || index === 3 ? 'aspect-[16/9]' : 'aspect-[4/5]'}`}>
+                    <Image
+                      src={src}
+                      alt={`CoRWA event photo ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#041f17]/45 via-transparent to-transparent" />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative overflow-hidden rounded-[2rem] bg-[#0A3D2E] text-white shadow-[0_30px_80px_rgba(10,61,46,0.18)]"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,174,29,0.28),transparent_35%)]" />
+              <div className="relative p-8 md:p-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-sm font-semibold text-[#DCAE1D]">
+                  <CalendarDays className="w-4 h-4" />
+                  Upcoming Event
+                </div>
+
+                <h3 className="text-3xl md:text-4xl font-extrabold mt-6 leading-tight">National Conference</h3>
+
+                <div className="mt-8 space-y-5">
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 border border-white/10">
+                      <MapPin className="w-5 h-5 text-[#DCAE1D]" />
+                    </div>
+                    <div>
+                      <p className="text-sm uppercase tracking-[0.2em] text-emerald-100/70">Location</p>
+                      <p className="text-xl font-bold">Ernakulam, Kerala</p>
+                    </div>
+                  </div>
+
+                  <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                    <p className="text-sm uppercase tracking-[0.2em] text-emerald-100/70 mb-3">Details</p>
+                    <p className="text-base leading-7 text-emerald-50/90">
+                      The next major CoRWA gathering will be the National Conference in Ernakulam, Kerala. Venue, date, and registration updates can be announced here as they are finalized.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                      <p className="text-sm uppercase tracking-[0.2em] text-emerald-100/70 mb-2">Program</p>
+                      <p className="font-semibold text-lg">National Conference</p>
+                    </div>
+                    <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                      <p className="text-sm uppercase tracking-[0.2em] text-emerald-100/70 mb-2">Status</p>
+                      <p className="font-semibold text-lg">More details coming soon</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* SERVICES SECTION */}
       <section id="services" className="py-24 bg-gray-50/50">
@@ -195,7 +277,7 @@ export default function HomeClient() {
               const hasExternalLink = organization && organization.website;
 
               return (
-                <Link key={sector.slug} href={hasExternalLink ? organization.website! : `/sectors/${sector.slug}`} target={hasExternalLink ? "_blank" : undefined} rel={hasExternalLink ? "noopener noreferrer" : undefined}>
+                <Link key={sector.slug} href={hasExternalLink ? organization.website! : `/sectors/${sector.slug}`} target={hasExternalLink ? '_blank' : undefined} rel={hasExternalLink ? 'noopener noreferrer' : undefined}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -269,15 +351,13 @@ export default function HomeClient() {
       {/* CTA SECTION */}
       <section className="py-24 bg-gradient-to-br from-[#0A3D2E] to-[#041f17] text-white">
         <div className="container mx-auto px-6 text-center">
-             <h2 className="text-3xl md:text-5xl font-bold mb-8">
-               Ready to Register Your Association?
-             </h2>
-             <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
-                Join hundreds of other associations across Malappuram, Ernakulam, Wayanad and more.
-             </p>
-             <Link href="/associations" className="px-8 py-4 bg-white text-[#0A3D2E] font-bold rounded-full shadow-lg hover:bg-gray-100 transition-all inline-block hover:-translate-y-1">
-                Explore Associations Directory
-             </Link>
+          <h2 className="text-3xl md:text-5xl font-bold mb-8">Ready to Register Your Association?</h2>
+          <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
+            Join hundreds of other associations across Malappuram, Ernakulam, Wayanad and more.
+          </p>
+          <Link href="/associations" className="px-8 py-4 bg-white text-[#0A3D2E] font-bold rounded-full shadow-lg hover:bg-gray-100 transition-all inline-block hover:-translate-y-1">
+            Explore Associations Directory
+          </Link>
         </div>
       </section>
 
