@@ -21,6 +21,7 @@ import {
 } from '@/utils/talukStorage';
 import { associationsData } from '@/data/associations';
 import { getAffiliatedAssociationLabel, isAffiliatedAssociation } from '@/utils/affiliatedAssociations';
+import { slugify } from '@/data/associationData';
 import {
   MapPin,
   CalendarDays,
@@ -768,6 +769,7 @@ export default function TalukClient({ taluk }: TalukClientProps) {
               {filteredAssociations.map((assoc, idx) => {
                 const affiliatedLabel = getAffiliatedAssociationLabel(assoc.name);
                 const isAffiliated = Boolean(affiliatedLabel);
+                const assocSlug = slugify(assoc.nameEn || assoc.name);
 
                 return (
                   <motion.div
@@ -775,48 +777,63 @@ export default function TalukClient({ taluk }: TalukClientProps) {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.02 }}
-                    className={`rounded-3xl p-6 border shadow-sm hover:shadow-lg transition-all group ${
+                    className={`relative rounded-3xl p-6 border shadow-sm hover:shadow-lg transition-all group cursor-pointer ${
                       isAffiliated
-                        ? 'bg-gradient-to-br from-amber-50 via-white to-white border-amber-200'
-                        : 'bg-white border-gray-100'
+                        ? 'bg-gradient-to-br from-amber-50 via-white to-white border-amber-200 hover:border-amber-300'
+                        : 'bg-white border-gray-100 hover:border-emerald-200'
                     }`}
                   >
-                    <div className="flex items-start justify-between mb-3">
-                      <div
-                        className={`p-3 rounded-2xl ${
-                          isAffiliated
-                            ? 'bg-amber-100 text-amber-900'
-                            : 'bg-emerald-50 text-[#0A3D2E]'
-                        }`}
-                      >
-                        <Building className="w-5 h-5 text-[#0A3D2E]" />
-                      </div>
-                      {isAffiliated && (
-                        <div className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 shadow-sm">
-                          <Star className="h-3 w-3 fill-current text-amber-500" />
-                          Affiliated
+                    <Link
+                      href={`/associations/${assocSlug}`}
+                      className="absolute inset-0 z-0 rounded-3xl"
+                      title={`View ${assoc.name} Details`}
+                    />
+
+                    <div className="relative z-10 pointer-events-none">
+                      <div className="flex items-start justify-between mb-3">
+                        <div
+                          className={`p-3 rounded-2xl ${
+                            isAffiliated
+                              ? 'bg-amber-100 text-amber-900'
+                              : 'bg-emerald-50 text-[#0A3D2E]'
+                          }`}
+                        >
+                          <Building className="w-5 h-5 text-[#0A3D2E]" />
                         </div>
-                      )}
+                        {isAffiliated && (
+                          <div className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 shadow-sm">
+                            <Star className="h-3 w-3 fill-current text-amber-500" />
+                            Affiliated
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <h3 className="text-base font-bold text-gray-900 group-hover:text-[#0A3D2E] transition-colors leading-snug">
+                          {assoc.name}
+                        </h3>
+                        {assoc.nameEn && (
+                          <p className="text-xs text-gray-500 font-medium">{assoc.nameEn}</p>
+                        )}
+                        {affiliatedLabel && (
+                          <p className="text-xs text-amber-900/80 font-medium">{affiliatedLabel}</p>
+                        )}
+                      </div>
                     </div>
 
-                    <div className="space-y-1.5">
-                      <h3 className="text-base font-bold text-gray-900 group-hover:text-[#0A3D2E] transition-colors leading-snug">
-                        {assoc.name}
-                      </h3>
-                      {assoc.nameEn && (
-                        <p className="text-xs text-gray-500 font-medium">{assoc.nameEn}</p>
-                      )}
-                      {affiliatedLabel && (
-                        <p className="text-xs text-amber-900/80 font-medium">{affiliatedLabel}</p>
-                      )}
-                    </div>
+                    <div className="relative z-10 flex items-center justify-between gap-2 mt-4 pt-4 border-t border-gray-100 pointer-events-none">
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-2.5 py-1 bg-yellow-50 text-yellow-800 text-[11px] font-semibold rounded-full border border-yellow-100 flex items-center gap-1">
+                          <MapPin className="w-3 h-3" /> {assoc.taluk}
+                        </span>
+                        <span className="px-2.5 py-1 bg-gray-50 text-gray-600 text-[11px] font-semibold rounded-full border border-gray-100">
+                          {assoc.district}
+                        </span>
+                      </div>
 
-                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
-                      <span className="px-2.5 py-1 bg-yellow-50 text-yellow-800 text-[11px] font-semibold rounded-full border border-yellow-100 flex items-center gap-1">
-                        <MapPin className="w-3 h-3" /> {assoc.taluk}
-                      </span>
-                      <span className="px-2.5 py-1 bg-gray-50 text-gray-600 text-[11px] font-semibold rounded-full border border-gray-100">
-                        {assoc.district}
+                      <span className="text-xs font-bold text-[#0A3D2E] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                        <span>View Page</span>
+                        <span>→</span>
                       </span>
                     </div>
                   </motion.div>
